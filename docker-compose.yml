@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: arbitrage_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: arbitrage_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  spark:
+    image: apache/spark:3.5.0
+    container_name: arbitrage_spark
+    command: tail -f /dev/null
+    volumes:
+      - ./spark_jobs:/opt/spark_jobs
+      - ./data:/opt/data
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
