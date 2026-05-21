@@ -134,11 +134,13 @@ The `docker-compose.yml` configures two core services:
 
 **PostgreSQL**
 ```yaml
-POSTGRES_USER: admin
-POSTGRES_PASSWORD: admin123
-POSTGRES_DB: arbitrage_db
+POSTGRES_USER: your_user
+POSTGRES_PASSWORD: your_password
+POSTGRES_DB: your_db
 Port: 5433 (host) → 5432 (container)
 ```
+
+> Set these values in a `.env` file (never commit it). Add `.env` to your `.gitignore`.
 
 **Apache Spark 3.5.0**
 - Mounts `./spark_jobs` → `/opt/spark_jobs`
